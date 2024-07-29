@@ -4,7 +4,7 @@
         <Alert />
         <ToasterWrapper />
         <CookieDisclaimer />
-		<RemoteUploadProgress />
+        <RemoteUploadProgress />
 
         <!--Show spinner before translations is loaded-->
         <Spinner v-if="!isLoaded" />
@@ -12,10 +12,10 @@
         <!--Show warning bar when user functionality is restricted-->
         <RestrictionWarningBar />
 
-		<div :class="{'lg:flex': isSidebarNavigation}">
-			<SidebarNavigation v-if="isSidebarNavigation" />
-			<router-view v-if="isLoaded" />
-		</div>
+        <div :class="{ 'lg:flex': isSidebarNavigation }">
+            <SidebarNavigation v-if="isSidebarNavigation" />
+            <router-view v-if="isLoaded" />
+        </div>
 
         <!--Background under popups-->
         <Vignette />
@@ -38,8 +38,8 @@ export default {
     name: 'App',
     components: {
         RestrictionWarningBar,
-		RemoteUploadProgress,
-		SidebarNavigation,
+        RemoteUploadProgress,
+        SidebarNavigation,
         CookieDisclaimer,
         ToasterWrapper,
         Vignette,
@@ -49,7 +49,7 @@ export default {
     data() {
         return {
             isLoaded: false,
-			isSidebarNavigation: undefined,
+            isSidebarNavigation: undefined,
         }
     },
     computed: {
@@ -59,33 +59,33 @@ export default {
         'config.defaultThemeMode': function () {
             this.handleDarkMode()
         },
-		'$route' () {
-			let section = this.$router.currentRoute.fullPath.split('/')[1]
-			const app = document.getElementsByTagName('body')[0]
+        '$route'() {
+            let section = this.$router.currentRoute.fullPath.split('/')[1]
+            const app = document.getElementsByTagName('body')[0]
 
-			// Set background color via theme setup
-			if (['admin', 'user'].includes(section)) {
-				app.classList.add('dark:bg-dark-background', 'bg-light-background')
-			} else {
-				app.classList.remove('dark:bg-dark-background', 'bg-light-background')
-			}
+            // Set background color via theme setup
+            if (['admin', 'user'].includes(section)) {
+                app.classList.add('dark:bg-dark-background', 'bg-light-background')
+            } else {
+                app.classList.remove('dark:bg-dark-background', 'bg-light-background')
+            }
 
-			// Set sidebar navigation visibility
-			this.isSidebarNavigation = ['admin', 'user', 'platform'].includes(section)
-		}
+            // Set sidebar navigation visibility
+            this.isSidebarNavigation = ['admin', 'user', 'platform'].includes(section)
+        }
     },
     methods: {
-		closeOverlays() {
-			events.$emit('popup:close')
-			events.$emit('popover:close')
+        closeOverlays() {
+            events.$emit('popup:close')
+            events.$emit('popover:close')
 
-			this.$store.commit('CLOSE_NOTIFICATION_CENTER')
-		},
+            this.$store.commit('CLOSE_NOTIFICATION_CENTER')
+        },
         spotlightListener(e) {
-			if (e.key === 'k' && e.metaKey || e.key === 'k' && e.ctrlKey) {
-				e.preventDefault()
-				events.$emit('spotlight:show');
-			}
+            if (e.key === 'k' && e.metaKey || e.key === 'k' && e.ctrlKey) {
+                e.preventDefault()
+                events.$emit('spotlight:show');
+            }
         },
         handleDarkMode() {
             const app = document.getElementsByTagName('html')[0]
@@ -129,10 +129,10 @@ export default {
             })
         }
 
-		// Go to sign in page if homepage is disabled
-		if (!this.$root.$data.config.allowHomepage && window.location.pathname === '/') {
-			this.$router.push({ name: 'SignIn' })
-		}
+        // Go to sign in page if homepage is disabled
+        if (!this.$root.$data.config.allowHomepage && window.location.pathname === '/') {
+            this.$router.push({ name: 'SignIn' })
+        }
     },
     created() {
         if (this.$isWindows()) {
@@ -157,7 +157,7 @@ input:-webkit-autofill {
 }
 
 [v-cloak],
-[v-cloak] > * {
+[v-cloak]>* {
     display: none;
 }
 
@@ -176,6 +176,7 @@ input:-webkit-autofill {
 }
 
 .vue-feather {
+
     path,
     circle,
     line,
